@@ -10,8 +10,8 @@ async function startProducer() {
       password: process.env.PASS,
     });
     const producer = await memphisConnection.producer({
-      stationName: 'STATION_NAME',
-      producerName: 'PRODUCER_NAME',
+      stationName: 'demo-40k',
+      producerName: 'producer',
     });
 
     for (let index = 0; index < 40000; index++) {
