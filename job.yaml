@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: memphis-40k-producer
+spec:
+  template:
+    spec:
+      containers:
+      - name: memphis-40k-producer
+        image: memphisos/memphis-40k-producer:latest
+        ports:
+          - containerPort: 3232
+            protocol: TCP
+        env:
+          - name: MEMPHIS_USERNAME
+            value: root
+          - name: MEMPHIS_HOST
+            value: memphis-cluster.memphis-qa-1.svc.cluster.local
+          - name: PASS
+            valueFrom:
+              secretKeyRef:
+                name: memphis-creds
+                key: CONNECTION_TOKEN
+      restartPolicy: Never
+  backoffLimit: 4
