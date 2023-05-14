@@ -7,7 +7,7 @@ async function startProducer() {
     memphisConnection = await memphis.connect({
       host: process.env.MEMPHIS_HOST,
       username: process.env.MEMPHIS_USERNAME,
-      password: process.env.PASS,
+      connectionToken: process.env.PASS,
     });
     const producer = await memphisConnection.producer({
       stationName: 'demo-40k',
